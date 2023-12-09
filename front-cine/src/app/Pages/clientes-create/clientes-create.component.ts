@@ -1,0 +1,79 @@
+import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+  selector: 'app-clientes-create',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './clientes-create.component.html',
+  styleUrl: './clientes-create.component.css'
+})
+export class ClientesCreateComponent implements OnInit {
+
+  ClienteArray: any[] = [];
+
+  first_name: string = "";
+  last_name: string = "";
+  cedula: string = '';
+  photo: string = "";
+  email: string = "";
+  address: string = "";
+  state: string = "";
+  city: string = "";
+  phone: string = '';
+
+  currentClienteID = "";
+
+  constructor(private http: HttpClient) {
+    this.getAllCliente();
+  }
+
+  ngOnInit(): void {
+  }
+
+  getAllCliente() {
+    this.http.get("http://127.0.0.1:8000/api/clientes").subscribe((resultData: any)=> {
+        console.log(resultData);
+        this.ClienteArray = resultData;
+    });
+  }
+
+  register() {
+
+    let bodyData = {
+      "first_name": this.first_name,
+      "last_name": this.last_name,
+      "cedula": this.cedula,
+      "photo": this.photo,
+      "email": this.email,
+      "address": this.address,
+      "state": this.state,
+      "city": this.city,
+      "phone": this.phone
+    };
+
+    this.http.post("http://127.0.0.1:8000/api/save", bodyData).subscribe((resultData: any) => {
+      console.log("Registro Exitoso");
+      alert("Usuario registrado con exito");
+      this.getAllCliente();
+      this.first_name = '';
+      this.last_name = '';
+      this.cedula = '';
+      this.photo = '';
+      this.email = '';
+      this.address = '';
+      this.state = '';
+      this.city = '';
+      this.phone = '';
+
+    })
+  }
+
+  saveCliente() {
+    if(this.currentClienteID == '') {
+      this.register();
+    }
+  }
+
+}
