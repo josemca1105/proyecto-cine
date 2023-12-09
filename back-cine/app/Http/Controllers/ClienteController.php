@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use Illuminate\Support\Facades\Validator;
 
 class ClienteController extends Controller
 {
@@ -15,6 +16,23 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|min:3',
+            'last_name' => 'required|min:3',
+            'cedula' => 'required|min:7',
+            'photo' => 'required',
+            'email' => 'required|min:11',
+            'address' => 'required|min:6',
+            'state' => 'required',
+            'city' => 'required|min:6',
+            'phone' => 'required|min:11'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
         $clientes = new Cliente([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
