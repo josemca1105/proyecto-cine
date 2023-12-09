@@ -26,7 +26,7 @@ export class ClienteEditComponent {
 
     this.clienteService.getCliente(this.clienteID).subscribe((data: any) => {
       this.cliente = data;
-      console.log(this.cliente);
+      // console.log(this.cliente);
     });
   }
 
@@ -50,12 +50,8 @@ export class ClienteEditComponent {
 
     this.clienteService.setUpdate(inputData, this.clienteID).subscribe({
       next: (res: any) => {
-        console.log(res)
         alert('Datos de Cliente Actualizados')
       },
-      error: (err: any) => {
-        console.log(err)
-      }
     });
   }
 }

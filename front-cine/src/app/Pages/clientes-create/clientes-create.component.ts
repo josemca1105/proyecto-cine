@@ -34,7 +34,7 @@ export class ClientesCreateComponent implements OnInit {
 
   getAllCliente() {
     this.http.get("http://127.0.0.1:8000/api/clientes").subscribe((resultData: any)=> {
-        console.log(resultData);
+        // console.log(resultData);
         this.ClienteArray = resultData;
     });
   }
@@ -54,7 +54,7 @@ export class ClientesCreateComponent implements OnInit {
     };
 
     this.http.post("http://127.0.0.1:8000/api/save", bodyData).subscribe((resultData: any) => {
-      console.log("Registro Exitoso");
+      // console.log("Registro Exitoso");
       alert("Usuario registrado con exito");
       this.getAllCliente();
       this.first_name = '';

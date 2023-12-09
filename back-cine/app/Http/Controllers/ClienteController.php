@@ -30,7 +30,10 @@ class ClienteController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->messages()
+            ], 422);
         }
 
         $clientes = new Cliente([

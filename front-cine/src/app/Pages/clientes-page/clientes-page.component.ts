@@ -30,14 +30,14 @@ export class ClientesPageComponent {
 
   getAllCliente() {
     this.http.get("http://127.0.0.1:8000/api/clientes").subscribe((resultData: any)=> {
-        console.log(resultData);
+        // console.log(resultData);
         this.ClienteArray = resultData;
     });
   }
 
   setDelete(data: any) {
     this.http.delete("http://127.0.0.1:8000/api/delete" + "/" + data.id).subscribe((resultData: any) => {
-        console.log(resultData);
+        // console.log(resultData);
         alert("Usuario Eliminado")
         this.getAllCliente();
     });
