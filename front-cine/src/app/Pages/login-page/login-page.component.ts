@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../Partials/navbar/navbar.component';
 
 @Component({
-  selector: 'app-home-page',
+  selector: 'app-login-page',
   standalone: true,
   imports: [NavbarComponent],
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+  templateUrl: './login-page.component.html',
+  styleUrl: './login-page.component.css'
 })
-export class HomePageComponent {
+export class LoginPageComponent {
 
 }

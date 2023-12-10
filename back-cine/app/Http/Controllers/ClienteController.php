@@ -18,15 +18,15 @@ class ClienteController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required|min:3',
-            'last_name' => 'required|min:3',
-            'cedula' => 'required|min:7',
+            'first_name' => 'required|min:3|max:10',
+            'last_name' => 'required|min:3|max:10',
+            'cedula' => 'required|min:7|max:10',
             'photo' => 'required',
-            'email' => 'required|min:11',
+            'email' => 'required|email|min:11',
             'address' => 'required|min:6',
             'state' => 'required',
             'city' => 'required|min:6',
-            'phone' => 'required|min:11'
+            'phone' => 'required|min:11|max:11'
         ]);
 
         if ($validator->fails()) {
@@ -55,6 +55,25 @@ class ClienteController extends Controller
     public function update(Request $request, $id)
     {
         $clientes = Cliente::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|min:3|max:10',
+            'last_name' => 'required|min:3|max:10',
+            'cedula' => 'required|min:7|max:10',
+            'email' => 'required|email|min:11',
+            'address' => 'required|min:6',
+            'state' => 'required',
+            'city' => 'required|min:6',
+            'phone' => 'required|min:11|max:11'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->messages()
+            ], 422);
+        }
+
         $clientes->update($request->all());
         return response()->json('Datos de cliente actualizados!');
     }
