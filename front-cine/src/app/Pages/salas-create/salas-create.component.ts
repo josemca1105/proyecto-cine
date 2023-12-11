@@ -1,12 +1,64 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-salas-create',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './salas-create.component.html',
   styleUrl: './salas-create.component.css'
 })
 export class SalasCreateComponent {
+  SalaArray: any[] = [];
 
+  name: string = "";
+  n_asientos: string = "";
+  desde: string = '';
+  hasta: string = "";
+  tipo: string = "";
+
+  currentSalaID = "";
+
+  constructor(private http: HttpClient) {
+    this.getAllSala();
+  }
+
+  ngOnInit(): void {
+  }
+
+  getAllSala() {
+    this.http.get("http://127.0.0.1:8000/api/salas").subscribe((resultData: any)=> {
+        // console.log(resultData);
+        this.SalaArray = resultData;
+    });
+  }
+
+  register() {
+
+    let bodyData = {
+      "name": this.name,
+      "n_asientos": this.n_asientos,
+      "desde": this.desde,
+      "hasta": this.hasta,
+      "tipo": this.tipo,
+    };
+
+    this.http.post("http://127.0.0.1:8000/api/salas/save", bodyData).subscribe((resultData: any) => {
+      // console.log("Registro Exitoso");
+      alert("Sala registrada con exito");
+      this.getAllSala();
+      this.name = '';
+      this.n_asientos = '';
+      this.desde = '';
+      this.hasta = '';
+      this.tipo = '';
+    })
+  }
+
+  saveSala() {
+    if(this.currentSalaID == '') {
+      this.register();
+    }
+  }
 }

@@ -10,13 +10,14 @@ import { ClientesCreateComponent } from './Pages/clientes-create/clientes-create
 import { HttpClientModule } from '@angular/common/http';
 import { ClienteService } from './Services/cliente.service';
 import { RegisterPageComponent } from './Pages/register-page/register-page.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   providers: [ClienteService],
   imports: [CommonModule, RouterOutlet, LoginPageComponent, RegisterPageComponent, HomePageComponent, ClientesPageComponent,
-    SalasPageComponent, ClientesCreateComponent, NavbarComponent, HttpClientModule],
+    SalasPageComponent, ClientesCreateComponent, NavbarComponent, HttpClientModule, NgxPaginationModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

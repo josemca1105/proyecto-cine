@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgFor, NgIf } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-clientes-page',
   standalone: true,
-  imports: [NgIf, NgFor],
+  imports: [NgIf, NgFor, NgxPaginationModule],
   templateUrl: './clientes-page.component.html',
   styleUrl: './clientes-page.component.css'
 })
 export class ClientesPageComponent {
+
+  p: number = 1;
 
   first_name: string = "";
   last_name: string = "";
@@ -26,10 +29,6 @@ export class ClientesPageComponent {
 
   constructor(private http: HttpClient) {
     this.getAllCliente();
-  }
-
-  getImage(id: number) {
-
   }
 
   getAllCliente() {
