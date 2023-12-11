@@ -21,7 +21,7 @@ class ClienteController extends Controller
             'first_name' => 'required|min:3|max:10',
             'last_name' => 'required|min:3|max:10',
             'cedula' => 'required|min:7|max:10',
-            'photo' => 'required',
+            'photo' => 'required|',
             'email' => 'required|email|min:11',
             'address' => 'required|min:6',
             'state' => 'required',
