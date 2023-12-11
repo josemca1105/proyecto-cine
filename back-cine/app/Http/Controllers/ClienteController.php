@@ -72,10 +72,15 @@ class ClienteController extends Controller
                 'status' => 422,
                 'errors' => $validator->messages()
             ], 422);
+        } else {
+            $clientes = Cliente::find($id);
+            if($clientes) {
+                $clientes->update($request->all());
+                return response()->json('Datos de cliente actualizados!');
+            } else {
+                return response()->json('Cliente no encontrado');
+            }
         }
-
-        $clientes->update($request->all());
-        return response()->json('Datos de cliente actualizados!');
     }
 
     public function show($id)
