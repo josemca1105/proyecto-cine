@@ -15,7 +15,7 @@ export class SalasCreateComponent {
   name: string = "";
   n_asientos: string = "";
   desde: string = '';
-  hasta: string = "";
+  hasta: string = '';
   tipo: string = "";
 
   currentSalaID = "";
@@ -25,6 +25,7 @@ export class SalasCreateComponent {
   }
 
   ngOnInit(): void {
+
   }
 
   getAllSala() {

@@ -39,7 +39,7 @@
                   <td class="whitespace-nowrap px-6 py-4">
                     <img [src]="ClienteItem.photo" alt="Foto del Cliente">
                   </td>
-                  <td class="whitespace-nowrap px-6 py-4"> {{ ClienteItem.first_name }} </td>
+                  <td class="whitespace-nowrap px-6 py-4"> {{ ClienteItem.first_name | uppercase }} </td>
                   <td class="whitespace-nowrap px-6 py-4"> {{ ClienteItem.last_name }} </td>
                   <td class="whitespace-nowrap px-6 py-4"> {{ ClienteItem.cedula }} </td>
                   <td class="whitespace-nowrap px-6 py-4"> {{ ClienteItem.email }} </td>

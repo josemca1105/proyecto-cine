@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-clientes-page',
   standalone: true,
-  imports: [NgIf, NgFor, NgxPaginationModule],
+  imports: [NgIf, NgFor, NgxPaginationModule, CommonModule],
   templateUrl: './clientes-page.component.html',
   styleUrl: './clientes-page.component.css'
 })

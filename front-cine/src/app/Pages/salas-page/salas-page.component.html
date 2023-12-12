@@ -32,7 +32,7 @@
                 <tr
                   *ngFor="let SalaItem of SalaArray | paginate: { itemsPerPage: 5, currentPage: p }"
                   class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                  <td class="whitespace-nowrap px-6 py-4"> {{ SalaItem.name }} </td>
+                  <td class="whitespace-nowrap px-6 py-4"> {{ SalaItem.name | uppercase }} </td>
                   <td class="whitespace-nowrap px-6 py-4"> {{ SalaItem.n_asientos }} </td>
                   <td class="whitespace-nowrap px-6 py-4"> {{ SalaItem.desde }} </td>
                   <td class="whitespace-nowrap px-6 py-4"> {{ SalaItem.hasta }} </td>

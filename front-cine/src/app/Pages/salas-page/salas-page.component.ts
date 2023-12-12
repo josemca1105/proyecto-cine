@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -6,7 +6,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 @Component({
   selector: 'app-salas-page',
   standalone: true,
-  imports: [NgFor, NgxPaginationModule],
+  imports: [NgFor, NgxPaginationModule, CommonModule],
   templateUrl: './salas-page.component.html',
   styleUrl: './salas-page.component.css'
 })
