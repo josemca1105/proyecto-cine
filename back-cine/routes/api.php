@@ -17,6 +17,8 @@ use App\Http\Controllers\SalaController;
 |
 */
 
+Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
+
 Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index']);
 Route::get('/cliente/{id}', [App\Http\Controllers\ClienteController::class, 'show']);
 Route::post('/save', [App\Http\Controllers\ClienteController::class, 'store']);

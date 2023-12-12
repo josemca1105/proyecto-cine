@@ -10,6 +10,7 @@ import { RegisterPageComponent } from './Pages/register-page/register-page.compo
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, title: 'Home Page' },
+  { path: 'index', component: HomePageComponent, title: 'Home Page' },
   { path: 'login', component: LoginPageComponent, title: 'Iniciar Sesión' },
   { path: 'signin', component: RegisterPageComponent, title: 'Registrarse' },
   { path: 'clientes', component: ClientesPageComponent, title: 'Listado de Clientes' },
