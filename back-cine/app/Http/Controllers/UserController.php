@@ -10,12 +10,17 @@ use App\Models\User;
 class UserController extends Controller
 {
     //
+    public function index()
+    {
+        $users = User::all();
+        return response()->json($users);
+    }
+
     public function register(Request $request)
     {
-        $data = $request->all();
 
         // Validar los datos del formulario
-        $validator = Validator::make($data, [
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
@@ -26,10 +31,11 @@ class UserController extends Controller
         }
 
         // Guardar los datos del usuario en la base de datos
-        $user = new User();
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = Hash::make($data['password']);
+        $user = new User([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        ]);
         $user->save();
 
         // Devolver una respuesta exitosa

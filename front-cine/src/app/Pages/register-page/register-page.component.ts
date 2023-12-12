@@ -1,48 +1,60 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../Services/user.service';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.css'
 })
 export class RegisterPageComponent implements OnInit {
 
-  name = '';
-  email = '';
-  password = '';
-  lastname: any;
-  router: any;
+  name: string = "";
+  email: string = "";
+  password: string = "";
 
-  constructor(private userService: UserService) {}
+  ClienteArray: any[] = [];
+
+  currentClienteID = "";
+
+  constructor(private http: HttpClient) {
+    this.getAllCliente();
+  }
+
+  getAllCliente() {
+    this.http.get("http://127.0.0.1:8000/api/users").subscribe((resultData: any)=> {
+        // console.log(resultData);
+        this.ClienteArray = resultData;
+    });
+  }
 
   ngOnInit() {
   }
 
-  register(): void {
-    const data = {
-      name: this.name,
-      email: this.email,
-      password: this.password,
+  register() {
+
+    let bodyData = {
+      "name": this.name,
+      "email": this.email,
+      "password": this.password
     };
 
-    this.userService.register(data).subscribe(
-      (response) => {
-        if (response.success) {
-          // Redireccionar al usuario a la página de inicio
-          this.router.navigate(['/index']);
-        } else {
-          // Mostrar un mensaje de error
-          alert(response.message);
-        }
-      },
-      (error) => {
-        // Mostrar un mensaje de error
-        alert(error.message);
-      },
-    );
+    this.http.post("http://127.0.0.1:8000/api/register", bodyData).subscribe((resultData: any) => {
+      console.log("Registro Exitoso");
+      alert("Usuario registrado con exito");
+      this.getAllCliente();
+      this.name = '';
+      this.email = '';
+      this.password = '';
+    })
+  }
+
+  saveCliente() {
+    if(this.currentClienteID == '') {
+      this.register();
+    }
   }
 
 }
