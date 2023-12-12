@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\SalaController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
