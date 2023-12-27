@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register-page',
@@ -19,7 +21,7 @@ export class RegisterPageComponent implements OnInit {
 
   currentClienteID = "";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.getAllCliente();
   }
 
@@ -40,7 +42,7 @@ export class RegisterPageComponent implements OnInit {
       "email": this.email,
       "password": this.password
     };
-
+    
     this.http.post("http://127.0.0.1:8000/api/register", bodyData).subscribe((resultData: any) => {
       console.log("Registro Exitoso");
       alert("Usuario registrado con exito");
@@ -48,6 +50,7 @@ export class RegisterPageComponent implements OnInit {
       this.name = '';
       this.email = '';
       this.password = '';
+      this.router.navigateByUrl('index');
     })
   }
 

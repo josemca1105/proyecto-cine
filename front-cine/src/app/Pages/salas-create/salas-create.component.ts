@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-salas-create',
@@ -20,7 +22,7 @@ export class SalasCreateComponent {
 
   currentSalaID = "";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.getAllSala();
   }
 
@@ -45,6 +47,7 @@ export class SalasCreateComponent {
       "tipo": this.tipo,
     };
 
+    this.router.navigateByUrl('salas');
     this.http.post("http://127.0.0.1:8000/api/salas/save", bodyData).subscribe((resultData: any) => {
       // console.log("Registro Exitoso");
       alert("Sala registrada con exito");

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ClienteService } from '../../Services/cliente.service';
 import { CommonModule, NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-edit',
@@ -20,7 +21,7 @@ export class ClienteEditComponent implements OnInit {
   ClienteArray: any[] = [];
   errors: any;
 
-  constructor(private route: ActivatedRoute, private clienteService: ClienteService) { }
+  constructor(private route: ActivatedRoute, private clienteService: ClienteService, private router: Router) { }
 
   ngOnInit() {
     this.clienteID = this.route.snapshot.paramMap.get('id');
@@ -55,6 +56,7 @@ export class ClienteEditComponent implements OnInit {
 
     this.clienteService.setUpdate(inputData, this.clienteID).subscribe({
       next: (res: any) => {
+      this.router.navigateByUrl('clientes');
         alert('Datos de Cliente Actualizados')
       },
       error: (err: any) => {

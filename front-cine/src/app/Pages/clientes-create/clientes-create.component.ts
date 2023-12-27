@@ -1,6 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clientes-create',
@@ -25,7 +26,7 @@ export class ClientesCreateComponent implements OnInit {
 
   currentClienteID = "";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.getAllCliente();
   }
 
@@ -66,7 +67,7 @@ export class ClientesCreateComponent implements OnInit {
       this.state = '';
       this.city = '';
       this.phone = '';
-
+      this.router.navigateByUrl('clientes');
     })
   }
 

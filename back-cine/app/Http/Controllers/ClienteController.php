@@ -22,11 +22,11 @@ class ClienteController extends Controller
             'last_name' => 'required|min:3|max:10',
             'cedula' => 'required|min:7|max:10',
             'photo' => 'required|',
-            'email' => 'required|email|min:11',
+            'email' => 'required|email|unique:clientes|min:11',
             'address' => 'required|min:6',
             'state' => 'required',
             'city' => 'required|min:6',
-            'phone' => 'required|min:11|max:11'
+            'phone' => 'required|min:11'
         ]);
 
         if ($validator->fails()) {
@@ -64,7 +64,7 @@ class ClienteController extends Controller
             'address' => 'required|min:6',
             'state' => 'required',
             'city' => 'required|min:6',
-            'phone' => 'required|min:11|max:11'
+            'phone' => 'required|min:11'
         ]);
 
         if ($validator->fails()) {
