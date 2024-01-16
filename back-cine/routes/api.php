@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,14 +19,17 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
-Route::post('/register', [App\Http\Controllers\UserController::class, 'register']);
+Route::get('/users', [App\Http\Controllers\UsuarioController::class, 'index']);
+Route::get('/user/{id}', [App\Http\Controllers\UsuarioController::class, 'show']);
+Route::post('/register', [App\Http\Controllers\UsuarioController::class, 'store']);
+Route::put('/update/{id}', [App\Http\Controllers\UsuarioController::class, 'update']);
+Route::delete('/delete/{id}', [App\Http\Controllers\UsuarioController::class, 'destroy']);
 
-Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index']);
-Route::get('/cliente/{id}', [App\Http\Controllers\ClienteController::class, 'show']);
-Route::post('/save', [App\Http\Controllers\ClienteController::class, 'store']);
-Route::put('/update/{id}', [App\Http\Controllers\ClienteController::class, 'update']);
-Route::delete('/delete/{id}',[App\Http\Controllers\ClienteController::class, 'destroy']);
+// Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index']);
+// Route::get('/cliente/{id}', [App\Http\Controllers\ClienteController::class, 'show']);
+// Route::post('/save', [App\Http\Controllers\ClienteController::class, 'store']);
+// Route::put('/update/{id}', [App\Http\Controllers\ClienteController::class, 'update']);
+// Route::delete('/delete/{id}', [App\Http\Controllers\ClienteController::class, 'destroy']);
 
 Route::get('/salas', [App\Http\Controllers\SalaController::class, 'index']);
 Route::get('/sala/{id}', [App\Http\Controllers\SalaController::class, 'show']);

@@ -17,12 +17,21 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $table = 'users';
+    protected $table = 'usuarios';
     protected $pimaryKey = 'id';
     protected $fillable = [
         'name',
         'email',
         'password',
+        'apellido',
+        'cedula',
+        'foto',
+        'direccion',
+        'pais',
+        'estado',
+        'ciudad',
+        'telefono',
+        'admin'
     ];
 
     /**
@@ -31,7 +40,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        // 'password',
         'remember_token',
     ];
 

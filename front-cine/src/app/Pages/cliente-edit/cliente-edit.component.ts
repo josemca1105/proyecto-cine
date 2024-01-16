@@ -45,9 +45,10 @@ export class ClienteEditComponent implements OnInit {
   setUpdate() {
     var inputData = {
       first_name: this.cliente.first_name,
+      email: this.cliente.email,
+      password: this.cliente.password,
       last_name: this.cliente.last_name,
       cedula: this.cliente.cedula,
-      email: this.cliente.email,
       phone: this.cliente.phone,
       state: this.cliente.state,
       city: this.cliente.city,

@@ -32,7 +32,7 @@ export class ClientesPageComponent {
   }
 
   getAllCliente() {
-    this.http.get("http://127.0.0.1:8000/api/clientes").subscribe((resultData: any)=> {
+    this.http.get("http://127.0.0.1:8000/api/users").subscribe((resultData: any)=> {
         // console.log(resultData);
         this.ClienteArray = resultData;
     });

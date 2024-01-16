@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterPageComponent implements OnInit {
 
-  name: string = "";
+  first_name: string = "";
   email: string = "";
   password: string = "";
 
@@ -38,16 +38,16 @@ export class RegisterPageComponent implements OnInit {
   register() {
 
     let bodyData = {
-      "name": this.name,
+      "first_name": this.first_name,
       "email": this.email,
-      "password": this.password
+      "password": this.password,
     };
-    
+
     this.http.post("http://127.0.0.1:8000/api/register", bodyData).subscribe((resultData: any) => {
       console.log("Registro Exitoso");
       alert("Usuario registrado con exito");
       this.getAllCliente();
-      this.name = '';
+      this.first_name = '';
       this.email = '';
       this.password = '';
       this.router.navigateByUrl('index');
