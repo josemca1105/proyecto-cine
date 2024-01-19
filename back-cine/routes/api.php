@@ -24,6 +24,7 @@ Route::get('/user/{id}', [App\Http\Controllers\UsuarioController::class, 'show']
 Route::post('/register', [App\Http\Controllers\UsuarioController::class, 'store']);
 Route::put('/update/{id}', [App\Http\Controllers\UsuarioController::class, 'update']);
 Route::delete('/delete/{id}', [App\Http\Controllers\UsuarioController::class, 'destroy']);
+Route::post('/login', [App\Http\Controllers\UsuarioController::class, 'login']);
 
 // Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index']);
 // Route::get('/cliente/{id}', [App\Http\Controllers\ClienteController::class, 'show']);

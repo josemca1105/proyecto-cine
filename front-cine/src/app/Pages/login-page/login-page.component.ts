@@ -1,47 +1,74 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../Partials/navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, FormsModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
 
+  // email: string = '';
+  // password: string = '';
+  // conf_password: string = '';
+
+  // UserArray: any[] = [];
+
+
+  // currentUserID = '';
+
+  // constructor(private http: HttpClient) {
+  //   this.getAllUser();
+  // }
+
+  // getAllUser() {
+  //   this.http.get("http://127.0.0.1:8000/api/clientes").subscribe((resultData: any)=> {
+  //       // console.log(resultData);
+  //       this.UserArray = resultData;
+  //   });
+  // }
+
+  // login() {
+  //   let bodyData = {
+
+  //   };
+  // }
+
+  // saveCliente() {
+  //   if(this.currentUserID == '') {
+  //     this.login();
+  //   }
+  // }
   email: string = '';
   password: string = '';
-  conf_password: string = '';
 
-  UserArray: any[] = [];
+  // loginObj: any = {
+  //   "emailID": "",
+  //   "password": ""
+  // }
 
-
-  currentUserID = '';
-
-  constructor(private http: HttpClient) {
-    this.getAllUser();
-  }
-
-  getAllUser() {
-    this.http.get("http://127.0.0.1:8000/api/clientes").subscribe((resultData: any)=> {
-        // console.log(resultData);
-        this.UserArray = resultData;
-    });
-  }
+  constructor (private http: HttpClient, private router: Router) {}
 
   login() {
-    let bodyData = {
-
-    };
-  }
-
-  saveCliente() {
-    if(this.currentUserID == '') {
-      this.login();
+    let inputData = {
+      "email": this.email,
+      "password": this.password,
     }
-  }
 
+    debugger;
+    this.http.post('http://127.0.0.1:8000/api/login', inputData).subscribe((res: any) => {
+      if(res.result) {
+        localStorage.setItem('loginToken', res.token);
+        alert("Login Exitoso!")
+        this.router.navigateByUrl('/index');
+      } else {
+        alert(res.message);
+      }
+    })
+  }
 }

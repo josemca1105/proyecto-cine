@@ -16,6 +16,7 @@ export class RegisterPageComponent implements OnInit {
   first_name: string = "";
   email: string = "";
   password: string = "";
+  isADmin: string = "0";
 
   ClienteArray: any[] = [];
 
@@ -41,6 +42,7 @@ export class RegisterPageComponent implements OnInit {
       "first_name": this.first_name,
       "email": this.email,
       "password": this.password,
+      "isAdmin": this.isADmin
     };
 
     this.http.post("http://127.0.0.1:8000/api/register", bodyData).subscribe((resultData: any) => {
@@ -50,7 +52,7 @@ export class RegisterPageComponent implements OnInit {
       this.first_name = '';
       this.email = '';
       this.password = '';
-      this.router.navigateByUrl('index');
+      this.router.navigateByUrl('login');
     })
   }
 

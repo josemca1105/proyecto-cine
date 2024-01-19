@@ -42,7 +42,7 @@ class UsuarioController extends Controller
             'state' => $request->input('state'),
             'city' => $request->input('city'),
             'phone' => $request->input('phone'),
-            'admin' => $request->input('admin')
+            'isAdmin' => $request->input('isAadmin')
         ]);
 
         $usuarios->save();
@@ -63,7 +63,7 @@ class UsuarioController extends Controller
             'address' => 'min:6',
             'state' => 'required',
             'city' => 'min:6',
-            'phone' => 'min:11',
+            'phone' => 'min:10',
         ]);
 
         if ($validator->fails()) {
@@ -93,5 +93,44 @@ class UsuarioController extends Controller
         $usuarios = Usuario::find($id);
         $usuarios->delete();
         return response()->json('Usuario eliminado!');
+    }
+
+    public function login(Request $request)
+    {
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        if (empty($email)) {
+            return response()->json([
+                'message' => 'El correo no puede estar vacio',
+            ], 400);
+        } else if (strpos($email, '@gmail.com') === false ){
+            return response()->json([
+                'El correo debe ser Gmail',
+            ], 400);
+        } else if (empty($password)){
+            return response()->json([
+                'message' => 'La contrasena no puede estar vacía',
+            ], 400);
+        } else if (strlen($password) < 6){
+            return response()->json([
+                'message' => 'La contrasena debe tener al menos 6 caracteres',
+            ], 400);
+        }
+
+        $admin = Usuario::where('email', $email)->where('password', $password)->first();
+
+        if ($admin) {
+            $id = $admin->id;
+            $isAdmin = $admin->isAdmin;
+
+            return response()->json([
+                'id' => $id,
+                'isAdmin' => $isAdmin,
+                'token' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDU2OTEwMTYsImlzcyI6IlRlc3QuY29tIiwiYXVkIjoiVGVzdC5jb20ifQ.iIhvhqmdC1yk2TwuSkA_ymhE0ujLHTEhiMg570RmqfM'
+            ], 200);
+        } else {
+            return response()->json(['message' => 'El correo y la contrasena no coinciden'], 401);
+        }
     }
 }
