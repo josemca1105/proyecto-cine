@@ -61,14 +61,18 @@ export class LoginPageComponent {
     }
 
     debugger;
-    this.http.post('http://127.0.0.1:8000/api/login', inputData).subscribe((res: any) => {
-      if(res.result) {
-        localStorage.setItem('loginToken', res.token);
-        alert("Login Exitoso!")
-        this.router.navigateByUrl('/index');
-      } else {
-        alert(res.message);
+    this.http.post('http://127.0.0.1:8000/api/login', inputData).subscribe(
+      (res: any) => {
+        const user = res.user; // obtener datos de usuario
+        const token = res.token // obtener datos del token
+        localStorage.setItem('user', JSON.stringify(user)); // guardar datos del usuario
+        localStorage.setItem('token', token); // guardar datos del token
+        alert('Ingreso Exitoso')
+        this.router.navigateByUrl('index');
+      },
+      (error) => {
+        alert('Los credenciales son erroneos')
       }
-    })
+    )
   }
 }

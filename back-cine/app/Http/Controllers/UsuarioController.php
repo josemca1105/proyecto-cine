@@ -142,11 +142,18 @@ class UsuarioController extends Controller
             ], 401);
         }
 
-        $user = Auth::user();
+        $user = Usuario::find(Auth::id());
         $token = $user->createToken('Laravel Sanctum')->accessToken;
 
         return response()->json([
+            'result' => true,
             'token' => $token,
+            'user' => [
+                'id' => $user->id,
+                'first_name' => $user->first_name,
+                'email' => $user->email,
+                'isAdmin' => $user->isAdmin
+            ]
         ], 200);
     }
 }
