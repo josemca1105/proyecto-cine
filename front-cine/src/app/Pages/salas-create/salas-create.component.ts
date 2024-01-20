@@ -47,7 +47,6 @@ export class SalasCreateComponent {
       "tipo": this.tipo,
     };
 
-    this.router.navigateByUrl('salas');
     this.http.post("http://127.0.0.1:8000/api/salas/save", bodyData).subscribe((resultData: any) => {
       // console.log("Registro Exitoso");
       alert("Sala registrada con exito");
@@ -57,6 +56,7 @@ export class SalasCreateComponent {
       this.desde = '';
       this.hasta = '';
       this.tipo = '';
+    this.router.navigateByUrl('salas');
     })
   }
 

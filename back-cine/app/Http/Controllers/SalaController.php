@@ -21,8 +21,8 @@ class SalaController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:1',
             'n_asientos' => 'required|min:2|max:2',
-            'desde' => 'required|date|after_or_equal:today',
-            'hasta' => 'required|date|after:today',
+            'desde' => 'required',
+            'hasta' => 'required',
             'tipo' => 'required',
         ]);
 
