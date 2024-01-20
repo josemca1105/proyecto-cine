@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 
 class UsuarioController extends Controller
 {
@@ -34,7 +36,7 @@ class UsuarioController extends Controller
         $usuarios = new Usuario([
             'first_name' => $request->input('first_name'),
             'email' => $request->input('email'),
-            'password' => $request->input('password'),
+            'password' => bcrypt($request->input('password')),
             'last_name' => $request->input('last_name'),
             'cedula' => $request->input('cedula'),
             'photo' => $request->input('photo'),
@@ -97,40 +99,54 @@ class UsuarioController extends Controller
 
     public function login(Request $request)
     {
-        $email = $request->input('email');
-        $password = $request->input('password');
+        // $email = $request->input('email');
+        // $password = $request->input('password');
 
-        if (empty($email)) {
+        // if (empty($email)) {
+        //     return response()->json([
+        //         'message' => 'El correo no puede estar vacio',
+        //     ], 400);
+        // } else if (strpos($email, '@gmail.com') === false ){
+        //     return response()->json([
+        //         'El correo debe ser Gmail',
+        //     ], 400);
+        // } else if (empty($password)){
+        //     return response()->json([
+        //         'message' => 'La contrasena no puede estar vacía',
+        //     ], 400);
+        // } else if (strlen($password) < 6){
+        //     return response()->json([
+        //         'message' => 'La contrasena debe tener al menos 6 caracteres',
+        //     ], 400);
+        // }
+
+        // $admin = Usuario::where('email', $email)->where('password', $password)->first();
+
+        // if ($admin) {
+        //     $id = $admin->id;
+        //     $isAdmin = $admin->isAdmin;
+
+        //     return response()->json([
+        //         'id' => $id,
+        //         'isAdmin' => $isAdmin,
+        //         'token' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDU2OTEwMTYsImlzcyI6IlRlc3QuY29tIiwiYXVkIjoiVGVzdC5jb20ifQ.iIhvhqmdC1yk2TwuSkA_ymhE0ujLHTEhiMg570RmqfM'
+        //     ], 200);
+        // } else {
+        //     return response()->json(['message' => 'El correo y la contrasena no coinciden'], 401);
+        // }
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::attempt($credentials)) {
             return response()->json([
-                'message' => 'El correo no puede estar vacio',
-            ], 400);
-        } else if (strpos($email, '@gmail.com') === false ){
-            return response()->json([
-                'El correo debe ser Gmail',
-            ], 400);
-        } else if (empty($password)){
-            return response()->json([
-                'message' => 'La contrasena no puede estar vacía',
-            ], 400);
-        } else if (strlen($password) < 6){
-            return response()->json([
-                'message' => 'La contrasena debe tener al menos 6 caracteres',
-            ], 400);
+                'message' => 'El usuario o la contraseña no son correctos.',
+            ], 401);
         }
 
-        $admin = Usuario::where('email', $email)->where('password', $password)->first();
+        $user = Auth::user();
+        $token = $user->createToken('Laravel Sanctum')->accessToken;
 
-        if ($admin) {
-            $id = $admin->id;
-            $isAdmin = $admin->isAdmin;
-
-            return response()->json([
-                'id' => $id,
-                'isAdmin' => $isAdmin,
-                'token' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDU2OTEwMTYsImlzcyI6IlRlc3QuY29tIiwiYXVkIjoiVGVzdC5jb20ifQ.iIhvhqmdC1yk2TwuSkA_ymhE0ujLHTEhiMg570RmqfM'
-            ], 200);
-        } else {
-            return response()->json(['message' => 'El correo y la contrasena no coinciden'], 401);
-        }
+        return response()->json([
+            'token' => $token,
+        ], 200);
     }
 }
