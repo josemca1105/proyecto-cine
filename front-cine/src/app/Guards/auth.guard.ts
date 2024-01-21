@@ -20,7 +20,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     usuarioVerificado = JSON.parse(token);
   }
 
-  if (usuarioVerificado?.password) {
+  if (usuarioVerificado) {
     return true;
   } else {
     const url = router.createUrlTree(['/login'])
