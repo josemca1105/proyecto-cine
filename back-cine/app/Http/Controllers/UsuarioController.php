@@ -149,7 +149,7 @@ class UsuarioController extends Controller
 
         return response()->json([
             'result' => true,
-            'token' => $token,
+            'token' => $token->tokenable_id,
             'user' => [
                 'id' => $user->id,
                 'first_name' => $user->first_name,
