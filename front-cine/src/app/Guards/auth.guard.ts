@@ -27,3 +27,23 @@ export const authGuard: CanActivateFn = (route, state) => {
     return url;
   }
 };
+
+export const protectedGuard: CanActivateFn = (route, state) => {
+
+  const token = localStorage.getItem('token')
+  const router = inject(Router);
+
+  let usuarioVerificado;
+
+  if (token) {
+    usuarioVerificado = JSON.parse(token);
+  }
+
+  if (usuarioVerificado) {
+    const url = router.createUrlTree(['/'])
+    return url;
+  } else {
+    return false;
+  }
+};
+

@@ -7,13 +7,13 @@ import { ClienteEditComponent } from './Pages/cliente-edit/cliente-edit.componen
 import { SalasCreateComponent } from './Pages/salas-create/salas-create.component';
 import { LoginPageComponent } from './Pages/login-page/login-page.component';
 import { RegisterPageComponent } from './Pages/register-page/register-page.component';
-import { authGuard } from './Guards/auth.guard';
+import { authGuard, protectedGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, title: 'Home Page' },
   { path: 'index', component: HomePageComponent, title: 'Home Page' },
-  { path: 'login', component: LoginPageComponent, title: 'Iniciar Sesión' },
-  { path: 'signin', component: RegisterPageComponent, title: 'Registrarse' },
+  { path: 'login', component: LoginPageComponent, title: 'Iniciar Sesión', canActivate: [protectedGuard] },
+  { path: 'signin', component: RegisterPageComponent, title: 'Registrarse', canActivate: [protectedGuard] },
   { path: 'clientes', component: ClientesPageComponent, title: 'Listado de Clientes', canActivate: [authGuard] },
   { path: 'clientes/create', component: ClientesCreateComponent, title: 'Registrar Cliente', canActivate: [authGuard] },
   { path: 'clientes/editar/:id', component: ClienteEditComponent, title: 'Editar Cliente', canActivate: [authGuard] },
