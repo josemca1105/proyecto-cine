@@ -7,6 +7,7 @@ import { ClienteEditComponent } from './Pages/cliente-edit/cliente-edit.componen
 import { SalasCreateComponent } from './Pages/salas-create/salas-create.component';
 import { LoginPageComponent } from './Pages/login-page/login-page.component';
 import { RegisterPageComponent } from './Pages/register-page/register-page.component';
+// import { authGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, title: 'Home Page' },
