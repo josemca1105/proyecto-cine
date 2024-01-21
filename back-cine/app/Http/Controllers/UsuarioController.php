@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class UsuarioController extends Controller
@@ -76,6 +77,7 @@ class UsuarioController extends Controller
         } else {
             $usuarios = Usuario::find($id);
             if ($usuarios) {
+                $request->merge(['password' => Hash::make($request->password)]);
                 $usuarios->update($request->all());
                 return response()->json('Datos de usuario actualizados!');
             } else {
