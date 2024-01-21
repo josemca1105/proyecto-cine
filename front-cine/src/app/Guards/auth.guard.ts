@@ -40,10 +40,10 @@ export const protectedGuard: CanActivateFn = (route, state) => {
   }
 
   if (usuarioVerificado) {
-    const url = router.createUrlTree(['/'])
-    return url;
+    const urlNew = router.createUrlTree(['/index'])
+    return urlNew;
   } else {
-    return false;
+    return true;
   }
 };
 
