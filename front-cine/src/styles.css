@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
+/* @import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css"; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,17 +8,20 @@
   color-scheme: light dark;
 }
 
+/* * {
+  background-color: #00061b;
+} */
+
 /* Order */
-@layer reset, primeng;
+/* @layer reset, primeng; */
 
 /* Reset CSS */
-@layer reset {
+/* @layer reset {
   button,
   input {
-    /* Add your desired reset styles here */
     margin: 0;
     padding: 0;
     border: none;
-    /* ...other reset styles... */
+
   }
-}
+} */

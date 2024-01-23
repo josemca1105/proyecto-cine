@@ -80,7 +80,7 @@ class PeliculasController extends Controller
 
     public function destroy($id)
     {
-        $peliculas = PeliculasController::find($id);
+        $peliculas = Peliculas::find($id);
         $peliculas->delete();
         return response()->json('Pelicula eliminada!');
     }

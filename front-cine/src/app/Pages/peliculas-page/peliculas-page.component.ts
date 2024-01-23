@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { NgFor, CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Storage, getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
 import { NgxPaginationModule } from 'ngx-pagination';
-
 
 @Component({
   selector: 'app-peliculas-page',
@@ -20,27 +20,37 @@ throw new Error('Method not implemented.');
   images: string[];
   p: number = 1
 
-  constructor(private storage: Storage) {
+  nombre: string = '';
+  descripcion: string = '';
+  duracion: string = '';
+  genero: string = '';
+  fecha_estreno: string = '';
+
+  currentPeliculaID = '';
+  PeliculasArray: any[] = [];
+
+  constructor(private http: HttpClient, private storage: Storage) {
     this.images = [];
+    this.getAllPelicula();
   }
 
   ngOnInit() {
     this.getImages()
   }
 
-  // uploadImage($event: any) {
-  //   const file = $event.target.files[0];
-  //   console.log(file);
+  getAllPelicula() {
+    this.http.get("http://127.0.0.1:8000/api/peliculas").subscribe((resultData: any) => {
+      this.PeliculasArray = resultData;
+    });
+  }
 
-  //   const imgRef = ref(this.storage, `images/${file.name}`);
-
-  //   uploadBytes(imgRef, file)
-  //     .then(response => {
-  //       console.log(response)
-  //       this.getImages();
-  //     })
-  //     .catch(error => console.log(error));
-  // }
+  setDelete(data: any) {
+    this.http.delete("http://127.0.0.1:8000/api/peliculas/delete" + "/" + data.id).subscribe((resultData: any) => {
+        // console.log(resultData);
+        alert("Pelicula Eliminada")
+        this.getAllPelicula();
+    });
+  }
 
   getImages() {
     const imagesRef = ref(this.storage, 'images');

@@ -31,7 +31,7 @@
         <div>
           <h5 class="text-2xl font-bold mr-3 dark:text-white">Listado de Peliculas</h5>
         </div>
-        <a href="/salas/create" class="text-white float-right bg-blue-700 hover:bg-blue-800
+        <a href="/peliculas/create" class="text-white float-right bg-blue-700 hover:bg-blue-800
         focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm
         w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700
         dark:focus:ring-blue-800">+ Agregar Peliculas</a>
@@ -46,19 +46,36 @@
               <thead class="border-b font-medium dark:border-neutral-500">
                 <tr>
                   <th scope="col" class="px-6 py-4">Nombre</th>
-                  <th scope="col" class="px-6 py-4">Tipo de archivo</th>
-                  <th scope="col" class="px-6 py-4">Peso</th>
-                  <th scope="col" class="px-6 py-4">Foto</th>
+                  <th scope="col" class="px-6 py-4">Descripcion</th>
+                  <th scope="col" class="px-6 py-4">Duracion</th>
+                  <th scope="col" class="px-6 py-4">Genero</th>
+                  <th scope="col" class="px-6 py-4">Fecha de estreno</th>
+                  <th scope="col" class="px-6 py-4">Poster</th>
+                  <th scope="col" class="px-6 py-4">Eliminar</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  *ngFor="let image of images | paginate: { itemsPerPage: 5, currentPage: p }"
+                  *ngFor="let PeliculaItem of PeliculasArray | paginate: { itemsPerPage: 5, currentPage: p }"
                   class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                  <td class="whitespace-nowrap px-6 py-4"> image/1 </td>
-                  <td class="whitespace-nowrap px-6 py-4"> image1.png </td>
-                  <td class="whitespace-nowrap px-6 py-4"> 5 </td>
-                  <td class="whitespace-nowrap px-6 py-4"> <img [src]="image" alt="" width="50" height="50"> </td>
+                  <td class="whitespace-nowrap px-6 py-4"> {{ PeliculaItem.nombre }} </td>
+                  <td class="whitespace-nowrap px-6 py-4"> {{ PeliculaItem.descripcion }} </td>
+                  <td class="whitespace-nowrap px-6 py-4"> {{ PeliculaItem.duracion }} </td>
+                  <td class="whitespace-nowrap px-6 py-4"> {{ PeliculaItem.genero }} </td>
+                  <td class="whitespace-nowrap px-6 py-4"> {{ PeliculaItem.fecha_estreno }} </td>
+                  <!-- @for (image of images; track $index) {
+                    <td class="whitespace-nowrap px-6 py-4"> <img [src]="image" alt="" width="200"> </td>
+                  } -->
+                  <td class="whitespace-nowrap px-6 py-4">
+                    <div class="images">
+                      <img [src]="image" *ngFor="let image of images" alt="" height="50" width="50">
+                    </div>
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4">
+                    <button type="button" class="text-white float-right bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none
+                    focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600
+                    dark:hover:bg-red-700 dark:focus:ring-red-800" (click)="setDelete(PeliculaItem)">Eliminar</button>
+                  </td>
                 </tr>
               </tbody>
             </table>

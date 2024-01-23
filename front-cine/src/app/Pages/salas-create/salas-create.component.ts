@@ -56,7 +56,7 @@ export class SalasCreateComponent {
       this.desde = '';
       this.hasta = '';
       this.tipo = '';
-    this.router.navigateByUrl('salas');
+      this.router.navigateByUrl('salas');
     })
   }
 
