@@ -68,7 +68,7 @@
                   } -->
                   <td class="whitespace-nowrap px-6 py-4">
                     <div class="images">
-                      <img [src]="image" *ngFor="let image of images" alt="" height="50" width="50">
+                      <img [src]="image" *ngFor="let image of images; let i = index" alt="" height="50" width="50">
                     </div>
                   </td>
                   <td class="whitespace-nowrap px-6 py-4">
