@@ -43,6 +43,20 @@ throw new Error('Method not implemented.');
       this.PeliculasArray = resultData;
     });
   }
+  // getAllPelicula() {
+  //   this.http.get<any[]>("http://127.0.0.1:8000/api/peliculas").subscribe(peliculas => {
+  //     // Now peliculas is an array with array properties
+  //     this.PeliculasArray = peliculas;
+  //     this.pushImagesToPeliculas();
+  //   });
+  // }
+
+  // async pushImagesToPeliculas() {
+  //   const images = await this.getImages();
+  //   this.PeliculasArray.forEach((pelicula) => {
+  //     pelicula.image = images; // Assign images in order
+  //   });
+  // }
 
   setDelete(data: any) {
     this.http.delete("http://127.0.0.1:8000/api/peliculas/delete" + "/" + data.id).subscribe((resultData: any) => {
