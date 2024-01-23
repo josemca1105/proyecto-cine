@@ -8,6 +8,7 @@ import { SalasCreateComponent } from './Pages/salas-create/salas-create.componen
 import { LoginPageComponent } from './Pages/login-page/login-page.component';
 import { RegisterPageComponent } from './Pages/register-page/register-page.component';
 import { authGuard, protectedGuard } from './Guards/auth.guard';
+import { PeliculasPageComponent } from './Pages/peliculas-page/peliculas-page.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent, title: 'Home Page' },
@@ -19,4 +20,5 @@ export const routes: Routes = [
   { path: 'clientes/editar/:id', component: ClienteEditComponent, title: 'Editar Cliente', canActivate: [authGuard] },
   { path: 'salas', component: SalasPageComponent, title: 'Listado de Salas', canActivate: [authGuard] },
   { path: 'salas/create', component: SalasCreateComponent, title: 'Crear Salas', canActivate: [authGuard] },
+  { path: 'peliculas', component: PeliculasPageComponent, title: 'Listado de Peliculas', canActivate: [authGuard] },
 ];

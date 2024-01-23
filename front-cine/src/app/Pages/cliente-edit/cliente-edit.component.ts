@@ -53,6 +53,7 @@ export class ClienteEditComponent implements OnInit {
       state: this.cliente.state,
       city: this.cliente.city,
       address: this.cliente.address,
+      photo: this.cliente.photo
     }
 
     this.clienteService.setUpdate(inputData, this.clienteID).subscribe({

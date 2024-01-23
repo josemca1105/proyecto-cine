@@ -23,6 +23,7 @@ export class ClientesCreateComponent implements OnInit {
   state: string = "";
   city: string = "";
   phone: string = '';
+  password: string = '';
 
   currentClienteID = "";
 
@@ -30,7 +31,7 @@ export class ClientesCreateComponent implements OnInit {
     this.getAllCliente();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   getAllCliente() {
@@ -51,7 +52,8 @@ export class ClientesCreateComponent implements OnInit {
       "address": this.address,
       "state": this.state,
       "city": this.city,
-      "phone": this.phone
+      "phone": this.phone,
+      "password": this.password
     };
 
     this.http.post("http://127.0.0.1:8000/api/register", bodyData).subscribe((resultData: any) => {
@@ -67,6 +69,7 @@ export class ClientesCreateComponent implements OnInit {
       this.state = '';
       this.city = '';
       this.phone = '';
+      this.password = '';
       this.router.navigateByUrl('clientes');
     })
   }

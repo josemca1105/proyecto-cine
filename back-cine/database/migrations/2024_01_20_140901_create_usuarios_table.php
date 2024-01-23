@@ -17,7 +17,6 @@ return new class extends Migration {
             $table->string('password');
             $table->string('last_name');
             $table->string('cedula');
-            $table->string('photo');
             $table->string('address');
             $table->string('state');
             $table->string('city');

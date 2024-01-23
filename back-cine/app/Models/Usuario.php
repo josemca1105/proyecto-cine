@@ -10,7 +10,7 @@ class Usuario extends Model
 {
     protected $table = 'usuarios';
     protected $pimaryKey = 'id';
-    protected $fillable = ['first_name', 'email', 'password', 'last_name', 'cedula', 'photo', 'address', 'state', 'city', 'phone', 'isAdmin'];
+    protected $fillable = ['first_name', 'email', 'password', 'last_name', 'cedula', 'address', 'state', 'city', 'phone', 'isAdmin'];
     protected $hidden = [
         'password',
         'remember_token',

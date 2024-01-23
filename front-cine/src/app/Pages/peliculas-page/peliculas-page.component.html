@@ -1,0 +1,77 @@
+<!-- <input type="file" (change)="uploadImage($event)"> -->
+
+<!-- <div class="images">
+  <img [src]="image" *ngFor="let image of images" alt="" width="200">
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Tipo de archivo</th>
+      <th>Tamaño</th>
+      <th>Imagen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let image of images">
+      <td>nombre imagen</td>
+      <td>tipo de imagen</td>
+      <td>mucho</td>
+      <td><img [src]="image" alt="" width="200" height="200"></td>
+    </tr>
+  </tbody>
+</table> -->
+
+<section class="flex items-center h-screen">
+  <div class="max-w-full px-4 mx-auto lg:px-12">
+    <!-- Start coding here -->
+    <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
+      <div class="flex-row items-center justify-between p-4 space-y-3 sm:flex sm:space-y-0 sm:space-x-4">
+        <div>
+          <h5 class="text-2xl font-bold mr-3 dark:text-white">Listado de Peliculas</h5>
+        </div>
+        <a href="/salas/create" class="text-white float-right bg-blue-700 hover:bg-blue-800
+        focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm
+        w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700
+        dark:focus:ring-blue-800">+ Agregar Peliculas</a>
+      </div>
+    </div>
+        <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
+    <div class="flex flex-col">
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <table class="min-w-full text-left text-sm font-light">
+              <thead class="border-b font-medium dark:border-neutral-500">
+                <tr>
+                  <th scope="col" class="px-6 py-4">Nombre</th>
+                  <th scope="col" class="px-6 py-4">Tipo de archivo</th>
+                  <th scope="col" class="px-6 py-4">Peso</th>
+                  <th scope="col" class="px-6 py-4">Foto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let image of images | paginate: { itemsPerPage: 5, currentPage: p }"
+                  class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                  <td class="whitespace-nowrap px-6 py-4"> image/1 </td>
+                  <td class="whitespace-nowrap px-6 py-4"> image1.png </td>
+                  <td class="whitespace-nowrap px-6 py-4"> 5 </td>
+                  <td class="whitespace-nowrap px-6 py-4"> <img [src]="image" alt="" width="50" height="50"> </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="flex justify-center">
+              <pagination-controls
+                (pageChange)="p = $event"
+                previousLabel="Anterior"
+                nextLabel="Siguiente">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
