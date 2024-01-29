@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\SalaController;
 use App\Http\Controllers\PeliculasController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::get('/pelicula/{id}', [App\Http\Controllers\PeliculasController::class, '
 Route::post('/peliculas/save', [App\Http\Controllers\PeliculasController::class, 'store']);
 Route::put('/peliculas/update/{id}', [App\Http\Controllers\PeliculasController::class, 'update']);
 Route::delete('/peliculas/delete/{id}', [App\Http\Controllers\PeliculasController::class, 'destroy']);
+
+Route::post('/posts', [App\Http\Controllers\PostController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

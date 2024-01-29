@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row pt-3">
+    <div class="col-auto">
+      <input type="file" (change)="uploadImage($event)" name="" id="">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-auto" *ngFor="let file of uploadedFileName">
+      <img [src]="fileURL + file" alt="">
+    </div>
+  </div>
+</div>
